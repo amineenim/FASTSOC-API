@@ -14,10 +14,14 @@ class OffreSeeder extends Seeder
     public function run(): void 
     {
      
-        Offre::insert([
-            ['name' => 'FastSOC Servers', 'monthly_fee' => 100.00, 'installation_fee' => 500.00],
-            ['name' => 'FastSOC USB', 'monthly_fee' => 50.00, 'installation_fee' => 200.00],
-            ['name' => 'FastSOC Data', 'monthly_fee' => 75.00, 'installation_fee' => 300.00],
-        ]);
+        $offers = [
+            ['name' => 'FastSOC Servers', 'installation_fee' => 500, 'monthly_fee' => 100],
+            ['name' => 'FastSOC USB', 'installation_fee' => 200, 'monthly_fee' => 50],
+            ['name' => 'FastSOC Data', 'installation_fee' => 300, 'monthly_fee' => 75],
+        ];
+
+        foreach ($offers as $offer) {
+            Offre::create($offer);
+        }
     }
 }

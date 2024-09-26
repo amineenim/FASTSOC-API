@@ -15,6 +15,9 @@ class CommandeService
     public function filterCommandes($request)
     {
         $query = Commande::query();
+
+        // Eager load offer and client data
+        $query->with(['offre', 'client']);
         
         // Array of valid filter parameters
         $validParameters = [

@@ -24,7 +24,7 @@ class Commande extends Model
     // Relation : Une commande appartient à une offre
     public function offre()
     {
-        return $this->belongsTo(Offre::class);
+        return $this->belongsTo(Offre::class, 'offer_id');
     }
 
     // Relation : Une commande peut avoir plusieurs technologies
