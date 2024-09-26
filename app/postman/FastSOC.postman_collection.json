@@ -1,0 +1,206 @@
+{
+	"info": {
+		"_postman_id": "7586632d-33b2-44f3-bbc8-232c2cf7d397",
+		"name": "FastSOC",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22753328",
+		"_collection_link": "https://www.postman.com/spacecraft-geologist-87046394/fastsoc-api/collection/22753328-7586632d-33b2-44f3-bbc8-232c2cf7d397?action=share&source=collection_link&creator=22753328"
+	},
+	"item": [
+		{
+			"name": "commandes",
+			"item": [
+				{
+					"name": "Get all Commandes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/commandes?offer_id=2",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"commandes"
+							],
+							"query": [
+								{
+									"key": "offer_id",
+									"value": "2"
+								}
+							]
+						},
+						"description": "StartFragmentThis endpoint retrieves a list of orders (`commandes`) with optional filtering based on various criteria. If any invalid parameters are provided, the API will return an error in JSON format with a `422 Unprocessable Entity` status.EndFragment\n\nQuery parameters for filtering: offer_id, technology_id, client_id, status(`new`, `in_progress`, `awaiting`, `completed)`"
+					},
+					"response": []
+				},
+				{
+					"name": "New Commande",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"client_id\": 1,\r\n    \"offer_id\": 1,\r\n    \"status\": \"neccw\",\r\n    \"number_of_licenses\": 10,\r\n    \"description\": \"Test order with invalid status\",\r\n    \"technology_ids\": [1, 2]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/commandes",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"commandes"
+							]
+						},
+						"description": "StartFragmentThis endpoint creates a new `commande` (order) for a client. The request must include details such as the client, offer, status, number of licenses, and associated technologies.EndFragment  \n  \nsample request body : {  \n\"client_id\": 1,  \n\"offer_id\": 1,  \n\"status\": \"new\",  \n\"number_of_licenses\": 10,  \n\"description\": \"Test order for the client\",  \n\"technology_ids\": \\[1, 2\\],  \n\"os_type\": \"Linux\",  \n\"extended_protection\": true,  \n\"encryption_protection\": false,  \n\"firewall\": true  \n}\n\nResponses:\n\n201 created\n\n400 Bad Request\n\n422 Unprocessable Content"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Commande",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\": \"in_progress\",\r\n    \"number_of_licenses\": 15,\r\n    \"description\": \"Updated order details\",\r\n    \"technology_ids\": [2, 3]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/commandes/4",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"commandes",
+								"4"
+							]
+						},
+						"description": "- **Purpose:** Updates the details of an existing `commande` (order) if the order’s status is not `\"completed\"`.\n    \n- **Request:**\n    \n    - URL parameter `{id}`: The ID of the `commande` to be updated.\n        \n    - JSON body can include the following fields:\n        \n        - `client_id`, `offer_id`, `status`, `number_of_licenses`, `description`, `technology_ids`, `os_type`, `extended_protection`, `encryption_protection`, `firewall`.\n            \n    - Not all fields are required; only those to be updated need to be provided.\n        \n- **Validation:**\n    \n    - Checks if the `commande` with the given `{id}` exists.\n        \n    - Ensures provided values (e.g., `status`, `number_of_licenses`, `technology_ids`) are valid.\n        \n    - Restricts updates if the current status is `\"completed\"`.\n        \n- **Response:**\n    \n    - **200 OK:** Returns the updated `commande` details in JSON format.\n        \n    - **400 Bad Request:** If validation fails (e.g., invalid parameters, attempting to update a completed order).\n        \n    - **404 Not Found:** If the `commande` with the specified `{id}` does not exist.\n        \n    - **403 Forbidden:** If attempting to update an order that is already marked as `\"completed\"`."
+					},
+					"response": []
+				}
+			],
+			"description": "this part of the API corresponds to urls api/commandes and only handles the Commande Models"
+		},
+		{
+			"name": "Clients",
+			"item": [
+				{
+					"name": "Get all Clients Copy",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/clients?siret=à",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"clients"
+							],
+							"query": [
+								{
+									"key": "siret",
+									"value": "à"
+								}
+							]
+						},
+						"description": "this endpoint handles retreiving all clients\n\nyou can pass query parameters for filtering capabilities\n\nthe allowed ones are legal_name, siren, siret\n\nif uncorrect values are passed it's handled witha 404\n\nif an invalid query parameter is also passed it's handled"
+					},
+					"response": []
+				},
+				{
+					"name": "new Client Copy",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Update Client Copy",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"siren\" : \"0e\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/clients/2",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"clients",
+								"2"
+							]
+						},
+						"description": "it allows to update a client by his id\n\nif the provided id doesn't exist it's handled by a 404\n\nif the validation rules are breaked it's handled by a 422 unprocessable content"
+					},
+					"response": []
+				},
+				{
+					"name": "get a client Copy",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/clients/ksks",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"clients",
+								"ksks"
+							]
+						},
+						"description": "this url handles retreiving a client's details by his id\n\nif the id is not found it handled via a 404"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a client Copy",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/clients/KK",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"clients",
+								"KK"
+							]
+						},
+						"description": "if the provided id corresponds to a client it's deleted and a 200 response is returned\n\nif it correponds to no client a 404 response is returned"
+					},
+					"response": []
+				}
+			],
+			"description": "this part of the API handles clients in urls alike /api/clients/"
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8000/"
+		}
+	]
+}
