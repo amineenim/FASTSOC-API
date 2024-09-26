@@ -15,8 +15,8 @@ This project is a Laravel-based API designed to manage client orders. It is full
 ## Setup Instructions
 1. **Clone the repository:**
     ```bash
-    git clone https://github.com/your-username/your-repository-name.git
-    cd your-repository-name
+    git clone https://github.com/amineenim/FASTSOC-API.git
+    cd amine
     ```
 
 2. **Copy the `.env.example` file to `.env` and set the environment variables:**
