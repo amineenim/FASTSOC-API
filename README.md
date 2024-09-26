@@ -37,7 +37,7 @@ This project is a Laravel-based API designed to manage client orders. It is full
 5. The application will be accessible at `http://localhost:8000`.
 
 ## Testing the API
-- Import the Postman collection and environment files (`postman/postman_collection.json` and `postman/postman_environment.json`) into Postman.
+- Import the Postman collection and environment files (located at the root of the project inside postman/) into Postman.
 - Use the environment to test all endpoints provided in the collection.
 
 ## Available Endpoints
