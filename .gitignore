@@ -1,0 +1,45 @@
+/.phpunit.cache
+/node_modules
+/public/build
+/public/hot
+/public/storage
+/storage/*.key
+/vendor
+.env
+.env.backup
+.env.production
+.phpunit.result.cache
+Homestead.json
+Homestead.yaml
+auth.json
+npm-debug.log
+yarn-error.log
+/.fleet
+/.idea
+/.vscode
+# Ignore environment and sensitive files
+.env
+.env.*
+
+# Ignore cache, log, and vendor directories
+/vendor
+/node_modules
+/storage/*.key
+/storage/*.log
+/storage/framework/*
+/storage/logs/*.log
+/public/storage
+/bootstrap/cache/*
+
+# Ignore system files and IDE settings
+.DS_Store
+.vscode
+.idea
+*.swp
+
+# Ignore Docker files that are not necessary for testing
+docker-compose.override.yml
+
+# Ignore composer and npm files not needed for the test
+composer.lock
+package-lock.json
