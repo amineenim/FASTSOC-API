@@ -57,4 +57,4 @@ Here is a summary of the key endpoints available in this API:
 ## Notes
 - Make sure to have Docker running before executing the commands.
 - The project is fully containerized, so there is no need to install PHP, Composer, or MySQL locally.
-- The Postman collection includes sample requests for testing each endpoint.
+- The Postman collection includes sample requests for testing each endpoint.( u should have postman locally or authenticate on postman website)
