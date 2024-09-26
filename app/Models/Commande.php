@@ -32,4 +32,19 @@ class Commande extends Model
     {
         return $this->belongsToMany(Technology::class, 'commande_technologie');
     }
+
+    public function calculateRevenue()
+    {
+        // access the related Offer through the relation
+        $offer = $this->offre;
+
+        if (!$offer) {
+            return 0;
+        }
+
+        // Assuming that revenue includes the installation fee and one month of subscription
+        $totalRevenue = $offer->installation_fee + $offer->monthly_fee;
+
+        return $totalRevenue;
+    }
 }

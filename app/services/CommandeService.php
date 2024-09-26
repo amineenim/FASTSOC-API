@@ -71,6 +71,11 @@ class CommandeService
             );
         }
 
+        // Add additional data to each commande
+        $commandes->each(function ($commande) {
+            $commande->total_revenue = $commande->calculateRevenue();
+        });
+
         return $commandes;
     }
 
