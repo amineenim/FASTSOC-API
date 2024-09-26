@@ -15,8 +15,8 @@ This project is a Laravel-based API designed to manage client orders. It is full
 ## Setup Instructions
 1. **Clone the repository:**
     ```bash
-    git clone https://github.com/your-username/your-repository-name.git
-    cd your-repository-name
+    git clone https://github.com/amineenim/FASTSOC-API.git
+    cd amine
     ```
 
 2. **Copy the `.env.example` file to `.env` and set the environment variables:**
@@ -37,24 +37,35 @@ This project is a Laravel-based API designed to manage client orders. It is full
 5. The application will be accessible at `http://localhost:8000`.
 
 ## Testing the API
-- Import the Postman collection and environment files (`postman/postman_collection.json` and `postman/postman_environment.json`) into Postman.
+- Import the Postman collection and environment files (located at the root of the project inside postman/) into Postman.
 - Use the environment to test all endpoints provided in the collection.
 
 ## Available Endpoints
-Here is a summary of the key endpoints available in this API:
+### API Endpoints Overview
+
+This API provides functionality for managing clients and commandes. Below is a summary of the main endpoints:
 
 ### Clients
-- **Create Client:** `POST /api/clients`
-- **Get Clients:** `GET /api/clients`
-- **Update Client:** `PUT /api/clients/{id}`
-- **Delete Client:** `DELETE /api/clients/{id}`
+- **Create**: `POST /api/clients` – Creates a new client with details like `siren`, `siret`, and `legal_name`.  
+- **Get All**: `GET /api/clients` – Retrieves a list of clients. Supports filtering by `legal_name`, `siren`, `siret` using query parameters (e.g., `?legal_name=Example`).  
+- **Get by ID**: `GET /api/clients/{id}` – Retrieves client details by ID.  
+- **Update**: `PUT /api/clients/{id}` – Updates client information. Returns validation errors in JSON if any issues are detected.  
+- **Delete**: `DELETE /api/clients/{id}` – Deletes a client. Returns `404` if the client is not found.
 
 ### Commandes
-- **Create Commande:** `POST /api/commandes`
-- **Get Commandes:** `GET /api/commandes`
-- **Update Commande:** `PUT /api/commandes/{id}`
+- **Create**: `POST /api/commandes` – Creates a new order with fields like `client_id`, `offer_id`, `status`, and `technology_ids`. Validates input and returns errors in JSON if invalid.  
+- **Get All**: `GET /api/commandes` – Retrieves all commandes. Supports filtering by `offer_id`, `technology_id`, `client_id`, and `status`.  
+- **Update**: `PUT /api/commandes/{id}` – Updates an order. The status must not be "completed" for updates to be allowed.  
+
+### Filtering and Error Handling
+- **Filtering**: Endpoints like `GET /api/clients` and `GET /api/commandes` support filtering using query parameters. Invalid parameters return a `400 Bad Request` with an error message.  
+- **Error Handling**:  
+  - Returns `422 Unprocessable Entity` for validation errors.  
+  - Returns `404 Not Found` for missing resources.  
+  - Returns a structured JSON response for all errors to keep the API consistent and user-friendly.
+
 
 ## Notes
 - Make sure to have Docker running before executing the commands.
 - The project is fully containerized, so there is no need to install PHP, Composer, or MySQL locally.
-- The Postman collection includes sample requests for testing each endpoint.
+- The Postman collection includes sample requests for testing each endpoint.( u should have postman locally or authenticate on postman website)
