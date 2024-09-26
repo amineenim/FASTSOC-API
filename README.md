@@ -41,19 +41,28 @@ This project is a Laravel-based API designed to manage client orders. It is full
 - Use the environment to test all endpoints provided in the collection.
 
 ## Available Endpoints
-Clients
-Create: POST /api/clients – Creates a new client with details like siren, siret, and legal_name.
-Get All: GET /api/clients – Retrieves a list of clients. Supports filtering by legal_name, siren and siret using query parameters (e.g., ?legal_name=Example).
-Get by ID: GET /api/clients/{id} – Retrieves client details by ID.
-Update: PUT /api/clients/{id} – Updates client information. Returns validation errors in JSON if any issues are detected.
-Delete: DELETE /api/clients/{id} – Deletes a client. Returns 404 if the client is not found.
+### API Endpoints Overview
 
-Commandes
-Create: POST /api/commandes – Creates a new order with fields like client_id, offer_id, status, and technology_ids. Validates input and returns errors in JSON if invalid.
-Get All: GET /api/commandes – Retrieves all commandes. Supports filtering by offer_id, technology_id, client_id, and status.
-Update: PUT /api/commandes/{id} – Updates an order. The status must not be "completed" for updates to be allowed.
+This API provides functionality for managing clients and commandes. Below is a summary of the main endpoints:
 
-Filtering: Endpoints like GET /api/clients and GET /api/commandes support filtering using query parameters. Invalid parameters return a 400 Bad Request with an error message.
+### Clients
+- **Create**: `POST /api/clients` – Creates a new client with details like `siren`, `siret`, and `legal_name`.  
+- **Get All**: `GET /api/clients` – Retrieves a list of clients. Supports filtering by `legal_name`, `siren`, `siret` using query parameters (e.g., `?legal_name=Example`).  
+- **Get by ID**: `GET /api/clients/{id}` – Retrieves client details by ID.  
+- **Update**: `PUT /api/clients/{id}` – Updates client information. Returns validation errors in JSON if any issues are detected.  
+- **Delete**: `DELETE /api/clients/{id}` – Deletes a client. Returns `404` if the client is not found.
+
+### Commandes
+- **Create**: `POST /api/commandes` – Creates a new order with fields like `client_id`, `offer_id`, `status`, and `technology_ids`. Validates input and returns errors in JSON if invalid.  
+- **Get All**: `GET /api/commandes` – Retrieves all commandes. Supports filtering by `offer_id`, `technology_id`, `client_id`, and `status`.  
+- **Update**: `PUT /api/commandes/{id}` – Updates an order. The status must not be "completed" for updates to be allowed.  
+
+### Filtering and Error Handling
+- **Filtering**: Endpoints like `GET /api/clients` and `GET /api/commandes` support filtering using query parameters. Invalid parameters return a `400 Bad Request` with an error message.  
+- **Error Handling**:  
+  - Returns `422 Unprocessable Entity` for validation errors.  
+  - Returns `404 Not Found` for missing resources.  
+  - Returns a structured JSON response for all errors to keep the API consistent and user-friendly.
 
 
 ## Notes
