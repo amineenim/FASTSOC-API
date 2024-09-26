@@ -1,70 +1,60 @@
-<<<<<<< HEAD
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Laravel API Project with Docker
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+This project is a Laravel-based API designed to manage client orders. It is fully containerized using Docker for easy setup and testing.
 
-## About Laravel
+## Features
+- CRUD operations for clients and orders.
+- Order filtering by various criteria (offer, technology, client, status).
+- Validation for requests using Laravel Form Requests.
+- Dockerized environment for easy setup and consistent testing.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Requirements
+- Docker and Docker Compose installed on the system.
+- Postman for API testing (collection and environment files provided).
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Setup Instructions
+1. **Clone the repository:**
+    ```bash
+    git clone https://github.com/your-username/your-repository-name.git
+    cd your-repository-name
+    ```
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+2. **Copy the `.env.example` file to `.env` and set the environment variables:**
+    ```bash
+    cp .env.example .env
+    ```
 
-## Learning Laravel
+3. **Build and start the Docker containers:**
+    ```bash
+    docker-compose up --build -d
+    ```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+4. **Run the database migrations and seeders:**
+    ```bash
+    docker-compose exec app php artisan migrate --seed
+    ```
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+5. The application will be accessible at `http://localhost:8000`.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Testing the API
+- Import the Postman collection and environment files (`postman/postman_collection.json` and `postman/postman_environment.json`) into Postman.
+- Use the environment to test all endpoints provided in the collection.
 
-## Laravel Sponsors
+## Available Endpoints
+Here is a summary of the key endpoints available in this API:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### Clients
+- **Create Client:** `POST /api/clients`
+- **Get Clients:** `GET /api/clients`
+- **Update Client:** `PUT /api/clients/{id}`
+- **Delete Client:** `DELETE /api/clients/{id}`
 
-### Premium Partners
+### Commandes
+- **Create Commande:** `POST /api/commandes`
+- **Get Commandes:** `GET /api/commandes`
+- **Update Commande:** `PUT /api/commandes/{id}`
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-=======
-# FASTSOC-API
->>>>>>> 0c484f18f9571c765c15dc313faa433a10b5f155
+## Notes
+- Make sure to have Docker running before executing the commands.
+- The project is fully containerized, so there is no need to install PHP, Composer, or MySQL locally.
+- The Postman collection includes sample requests for testing each endpoint.
